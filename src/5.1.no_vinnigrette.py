@@ -19,7 +19,4 @@ def no_vinnigrete(start_date, end_date):
     return random_date
 
 if __name__ == "__main__":
-    # Get user input
-    date1 = input("Enter the first date (YYYY-MM-DD): ")
-    date2 = input("Enter the second date (YYYY-MM-DD): ")
-    print("Random date:", no_vinnigrete(date1, date2))
+   print(no_vinnigrete("2023-07-10", "2023-07-10"))
