@@ -1,3 +1,10 @@
+"""
+Module for calculating the total price of a recipe based on ingredient prices and quantities.
+This module defines a function 'piece_of_cake' that calculates the price of a recipe by summing
+up the prices of its ingredients, excluding any optional ingredients, if provided.
+"""
+
+
 def piece_of_cake(prices, optionals=None, **ingredients):
     """
     Calculates the total price of a recipe based on ingredient prices and quantities.
