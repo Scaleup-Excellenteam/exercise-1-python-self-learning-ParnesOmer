@@ -14,7 +14,7 @@ def no_vinnigrete(start_date, end_date):
 
     # Check if the date falls on a Monday
     if datetime.datetime.fromtimestamp(random_timestamp).weekday() == 0:
-        print("אין לי ויניגרט!")
+        print("Ain't gettin' no vinaigrette today :(")
 
     return random_date
 
