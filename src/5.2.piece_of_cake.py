@@ -27,7 +27,6 @@ def piece_of_cake(prices, optionals=None, **ingredients):
         (quantity / 100) * prices[ingredient]  # Price per ingredient
         for ingredient, quantity in ingredients.items()  # Use items() to get both key and value
         if ingredient in prices and ingredient not in optionals)
-    
     return total_price
 
 
