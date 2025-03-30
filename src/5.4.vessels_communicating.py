@@ -1,0 +1,28 @@
+def vessels_communicating(*iterables):
+    """
+       Intertwine iterators elements from multiple iterables.
+       This function takes one or more iterable objects and returns a generator
+       that yields their elements Intertwine. For example, given iterables
+       Parameters:
+       *iterables: One or more iterable objects (e.g., lists, tuples, strings).
+       Yields:
+       The next interleaved element from the input iterables.
+       """
+    # Convert each iterable to an iterator
+    iterators = [iter(it) for it in iterables]
+
+    # Continue until there are no more iterators
+    while iterators:
+        # Iterate over each iterator
+        for it in iterators:
+            try:
+                # Yield the next item from the iterator
+                yield next(it)
+            except StopIteration:
+                # If the iterator is exhausted, remove it from the list
+                iterators.remove(it)
+
+
+if __name__ == '__main__':
+    result = list(vessels_communicating('abc', [1, 2, 3], ('!', '@', '#')))
+    print(result)
