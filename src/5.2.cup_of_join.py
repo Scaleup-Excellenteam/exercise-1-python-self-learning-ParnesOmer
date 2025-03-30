@@ -1,3 +1,9 @@
+"""
+Module: Implements the cup_of_join function.
+This function joins multiple lists into a single list, adding a separator between them.
+"""
+
+
 def cup_of_join(*lists, sep=None):
     """
       Joins multiple lists into one, inserting a separator between them.
@@ -19,7 +25,7 @@ def cup_of_join(*lists, sep=None):
         result.extend(lst)  # Add elements of the current list
 
     if sep:
-        result.append(sep)  # Add separator in the end
+        result.append(sep)  # Add separator between lists
     return result
 
 
