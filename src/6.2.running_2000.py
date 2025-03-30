@@ -1,10 +1,10 @@
-import time
 """
 Module to measure the execution time of a given function.
 
 This module provides the `running_2000` function to time the execution of a 
 function with positional and keyword arguments.
 """
+import time
 
 
 def running_2000(f, *parameters, **keywords):
