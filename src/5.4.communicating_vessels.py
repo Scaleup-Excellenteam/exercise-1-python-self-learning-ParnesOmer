@@ -12,7 +12,6 @@ def generator_interleave(*iterables):
     """
     # Convert each iterable to an iterator
     iterators = [iter(it) for it in iterables]
-
     # Continue until there are no more iterators
     while iterators:
         # Iterate over each iterator
