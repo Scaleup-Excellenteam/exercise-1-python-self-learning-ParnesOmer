@@ -1,3 +1,8 @@
+"""
+Module: no_vinnigrete
+Generates a random date within a given range and prints a message
+if the selected date falls on a Monday.
+"""
 import random
 import datetime
 
