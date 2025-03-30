@@ -1,3 +1,7 @@
+"""
+Module: thats_the_way
+Lists files in a directory that start with 'deep'.
+"""
 import os
 
 def thats_the_way(path_to_directory):
@@ -16,3 +20,4 @@ if __name__ == "__main__":
     # Check the images folder
     matching_files = thats_the_way(os.getcwd())
     print(matching_files)
+    
