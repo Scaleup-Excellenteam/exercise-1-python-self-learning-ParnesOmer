@@ -23,10 +23,13 @@ def piece_of_cake(prices, optionals=None, **ingredients):
     if optionals is None:
         optionals = []  # If no optional ingredients are provided, set an empty list
 
-    total_price = sum((ingredients[ingredient] / 100) * prices[ingredient]
-                      for ingredient in ingredients if ingredient in prices and ingredient not in optionals)
-
+    total_price = sum(
+        (quantity / 100) * prices[ingredient]  # Price per ingredient
+        for ingredient, quantity in ingredients.items()  # Use items() to get both key and value
+        if ingredient in prices and ingredient not in optionals)
+    
     return total_price
+
 
 if __name__ == '__main__':
     # Test cases
