@@ -1,4 +1,11 @@
-def group_by(f,iterator):
+"""
+Module to group elements from an iterable based on the result of a function applied to each element.
+This function returns a dictionary where keys are the results of applying the function,
+and values are lists of elements that correspond to each key.
+"""
+
+
+def group_by(f, iterator):
     """
     Groups elements of the iterator based on the function f.
     Parameters:
@@ -17,8 +24,13 @@ def group_by(f,iterator):
             else:
                 my_dict[value] = [i]
         return my_dict
+    except TypeError as e:
+        print(f"Error: Invalid type - {e}")
+        return {}
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Unexpected error: {e}")
+        return {}
+
 
 if __name__ == "__main__":
     print(group_by(len, ["hi", "bye", "yo", "try"]))
