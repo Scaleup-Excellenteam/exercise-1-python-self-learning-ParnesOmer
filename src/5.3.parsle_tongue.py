@@ -1,4 +1,4 @@
-def parsle_tongue(filename, chunk_size=1024):
+def parsle_tongue(filename=None, chunk_size=1024):
     """
         Reads a binary file in chunks and yields sequences of lowercase alphabetical
         characters that end with the '!' character, the
