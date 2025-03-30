@@ -1,3 +1,14 @@
+"""
+Module for interleaving elements from multiple iterables.
+
+Provides two functions:
+- generator_interleave: A generator that yields interwoven elements.
+- interleave: Returns a list of interwoven elements.
+
+Both functions take one or more iterable objects and yield/return their elements interleaved.
+"""
+
+
 def generator_interleave(*iterables):
     """
        Intertwine iterators elements from multiple iterables.
