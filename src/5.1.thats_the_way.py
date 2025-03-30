@@ -4,6 +4,7 @@ Lists files in a directory that start with 'deep'.
 """
 import os
 
+
 def thats_the_way(path_to_directory):
     """
     Returns a list of files in the given directory that start with 'deep'.
@@ -16,8 +17,8 @@ def thats_the_way(path_to_directory):
         print(f"Error: The directory '{path_to_directory}' does not exist.")
         return []
 
+
 if __name__ == "__main__":
     # Check the images folder
     matching_files = thats_the_way(os.getcwd())
     print(matching_files)
-    
