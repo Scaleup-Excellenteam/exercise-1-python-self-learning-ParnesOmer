@@ -1,4 +1,4 @@
-def parsle_tongue(filename=None, chunk_size=1024):
+def parsle_tongue(filename='logo.jpg', chunk_size=1024):
     """
         Reads a binary file in chunks and yields sequences of lowercase alphabetical
         characters that end with the '!' character, the
@@ -15,8 +15,6 @@ def parsle_tongue(filename=None, chunk_size=1024):
         TypeError('filename cannot be None')
         FileNotFoundError: If the specified file is not found.
         """
-    if filename is None:
-        raise TypeError('filename cannot be None')
     buffer = b''  # Buffer to hold the current chunk and last characters
     min_size = 5
     current_string = ""
