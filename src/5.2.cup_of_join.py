@@ -1,4 +1,4 @@
-def cup_of_join(*lists, sep="-"):
+def cup_of_join(*lists, sep=None):
     """
       Joins multiple lists into one, inserting a separator between them.
 
@@ -14,13 +14,15 @@ def cup_of_join(*lists, sep="-"):
 
     result = []
     for i, lst in enumerate(lists):
-        if i > 0:
+        if i > 0 and sep is not None:
             result.append(sep)  # Add separator between lists
-
         result.extend(lst)  # Add elements of the current list
 
+    if sep:
+        result.append(sep)  # Add separator in the end
     return result
+
 
 if __name__ == "__main__":
     # Test cases
-    print(cup_of_join([1, 2], [8], [9, 5, 6], sep='@'))
+    print(cup_of_join([], [1], [], sep='x'))
