@@ -7,7 +7,7 @@ def long_cat_is_long(text):
     dict: A dictionary where the keys are words and the values are their lengths.
     """
     word_list = [''.join([char.lower() for char in word if char.isalpha()]) for word in text.split()]
-    return {word: len(word) for word in word_list}
+    return {word: len(word) for word in word_list if word}
 
 if __name__ == '__main__':
     text = """
