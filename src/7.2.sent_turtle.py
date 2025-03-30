@@ -1,4 +1,3 @@
-#sent_turtle
 class PostOffice:
     """A Post Office class. Allows users to message each other.
 
@@ -12,9 +11,10 @@ class PostOffice:
         self.message_id = 0
         self.boxes = {user: [] for user in usernames}
 
-    def send_message(self, sender, recipient, message_body, urgent=False):
+    def send_message(self, sender, recipient, title, message_body, urgent=False):
         """Send a message to a recipient.
 
+        :param title:
         :param str sender: The message sender's username.
         :param str recipient: The message recipient's username.
         :param str message_body: The body of the message.
@@ -30,6 +30,8 @@ class PostOffice:
             'id': self.message_id,
             'body': message_body,
             'sender': sender,
+            'title': title,
+            'unread': True,
         }
         if urgent:
             user_box.insert(0, message_details)
@@ -51,11 +53,12 @@ class PostOffice:
 
         user_box = self.boxes[username]
         if n is None:
-            messages = user_box[:]
-            self.boxes[username] = []
-        else:
-            messages = user_box[:n]
-            self.boxes[username] = user_box[n:]
+            n = len(user_box)
+
+        messages = user_box[:n]
+        for message in messages:
+            message['unread'] = False
+
         return messages
 
     def search_inbox(self, username, search_string):
@@ -69,10 +72,10 @@ class PostOffice:
         """
         if username not in self.boxes:
             raise KeyError(f'User {username} does not exist.')
-
+        search_string = search_string.lower()
         user_box = self.boxes[username]
         matching_messages = [
             message for message in user_box
-            if search_string in message['body']
+            if search_string in message['body'].lower() or search_string in message['title'].lower()
         ]
         return matching_messages
