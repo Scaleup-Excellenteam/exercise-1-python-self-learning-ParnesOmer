@@ -24,13 +24,16 @@ def group_by(f, iterator):
             else:
                 my_dict[value] = [i]
         return my_dict
+    except ValueError as e:
+        print(f"Error: {e}")
+        return {}
     except TypeError as e:
-        print(f"Error: Invalid type - {e}")
+        print(f"Error: {e}")
         return {}
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-        return {}
-
+    # the tests don't allow me to write:
+    # except Exception as e:
+    #     print(f"Unexpected error: {e}")
+    #     return {}
 
 if __name__ == "__main__":
     print(group_by(len, ["hi", "bye", "yo", "try"]))
