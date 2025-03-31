@@ -1,3 +1,11 @@
+"""
+Module: 7.2.sent_turtle
+This module implements a simple Post Office class that allows users to send and receive messages.
+Classes:
+    - PostOffice: Manages user inboxes and message exchanges.
+"""
+
+
 class PostOffice:
     """A Post Office class. Allows users to message each other.
 
