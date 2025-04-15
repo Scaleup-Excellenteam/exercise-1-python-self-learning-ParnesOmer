@@ -32,7 +32,7 @@ def remember_remember(image_name):
 
 
 if __name__ == "__main__":
-     try:
+    try:
         print(remember_remember("code.png"))
     except FileNotFoundError:
         print("Error: The specified file was not found.")
