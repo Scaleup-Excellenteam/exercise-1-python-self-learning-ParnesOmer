@@ -35,15 +35,13 @@ def no_vinnigrete(start_date, end_date):
     # Pick a random timestamp in the given range
     random_timestamp = random.randint(0, difference)
     result = start_date + datetime.timedelta(days=random_timestamp)
-    # Return the random date and whether it falls on a Monday
-    return (result.weekday() == MONDAY)
+    # Check if the date falls on a Monday
+    if result.weekday() == MONDAY:
+        print("Ain't gettin' no vinaigrette today :(")
     
 
 if __name__ == "__main__":
     # Get user input
     date1 = input("Enter the first date (YYYY-MM-DD): ")
     date2 = input("Enter the second date (YYYY-MM-DD): ")
-    is_monday = no_vinnigrete(date1, date2)
-    # Check if the date falls on a Monday
-    if is_monday:
-        print("Ain't gettin' no vinaigrette today :(")
+    no_vinnigrete(date1, date2)
