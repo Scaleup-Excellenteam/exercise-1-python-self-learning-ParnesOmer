@@ -27,31 +27,30 @@ def parsle_tongue():
         """
     buffer = b''  # Buffer to hold the current chunk and last characters
     current_string = ""
-    try:
-        with open(FILENAME, 'rb') as file:
-            while True:
-                chunk = file.read(CHUNK_SIZE)
-                if not chunk:
-                    break
-                buffer += chunk
-                for char in buffer:
-                    char = chr(char)
-                    if char.isalpha() and char.islower() and char.isascii():
-                        current_string += char
-                    else:
-                        if char == '!' and len(current_string) >= MIN_SIZE:
-                            yield current_string
-                        current_string = ""
-                # This line ensures that only the last 'MIN_SIZE' characters are kept in the buffer
-                # so that strings don't get split between chunks.
-                buffer = buffer[-MIN_SIZE:]
-
-    except FileNotFoundError:
-        print("The file was not found.")
+    with open(FILENAME, 'rb') as file:
+        while True:
+            chunk = file.read(CHUNK_SIZE)
+            if not chunk:
+                break
+            buffer += chunk
+            for char in buffer:
+                char = chr(char)
+                if char.isalpha() and char.islower() and char.isascii():
+                    current_string += char
+                else:
+                    if char == '!' and len(current_string) >= MIN_SIZE:
+                        yield current_string
+                    current_string = ""
+            # This line ensures that only the last 'MIN_SIZE' characters are kept in the buffer
+            # so that strings don't get split between chunks.
+            buffer = buffer[-MIN_SIZE:]
 
 
 if __name__ == "__main__":
     # Using a generator to read the file in parts
-    gen = parsle_tongue()
-    for word in gen:
-        print(word)
+    try:
+        gen = parsle_tongue()
+        for word in gen:
+            print(word)
+    except FileNotFoundError:
+        print(f"Error: The file '{FILENAME}' was not found.")
