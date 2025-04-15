@@ -9,7 +9,10 @@ Raises:
 FileNotFoundError: If the specified file is not found.
 """
 
-
+# Define constants
+MIN_SIZE = 5  # Minimum size of valid sequences
+CHUNK_SIZE = 1024  # Size of each chunk read from the file
+FILENAME = 'logo.jpg'  # Name of the file to read
 def parsle_tongue():
     """
         Reads a binary file in chunks and yields sequences of lowercase alphabetical
@@ -23,14 +26,11 @@ def parsle_tongue():
         FileNotFoundError: If the specified file is not found.
         """
     buffer = b''  # Buffer to hold the current chunk and last characters
-    min_size = 5
-    chunk_size = 1024
     current_string = ""
-    filename = 'logo.jpg'
     try:
-        with open(filename, 'rb') as file:
+        with open(FILENAME, 'rb') as file:
             while True:
-                chunk = file.read(chunk_size)
+                chunk = file.read(CHUNK_SIZE)
                 if not chunk:
                     break
                 buffer += chunk
@@ -39,12 +39,12 @@ def parsle_tongue():
                     if char.isalpha() and char.islower() and char.isascii():
                         current_string += char
                     else:
-                        if char == '!' and len(current_string) >= min_size:
+                        if char == '!' and len(current_string) >= MIN_SIZE:
                             yield current_string
                         current_string = ""
-                # This line ensures that only the last 'min_size' characters are kept in the buffer
+                # This line ensures that only the last 'MIN_SIZE' characters are kept in the buffer
                 # so that strings don't get split between chunks.
-                buffer = buffer[-min_size:]
+                buffer = buffer[-MIN_SIZE:]
 
     except FileNotFoundError:
         print("The file was not found.")
