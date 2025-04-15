@@ -2,7 +2,7 @@
 Module for reading an image and extracting an encrypted message embedded
 using a specific encoding scheme. It retrieves characters from pixel data.
 """
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 
 def remember_remember(image_name):
@@ -19,21 +19,22 @@ def remember_remember(image_name):
         Returns:
         str: The decrypted message embedded in the image.
         """
-    try:
-        with Image.open(image_name) as image:
-            encrypted_message = []
-            width, height = image.size
-            for w in range(width):
-                for h in range(height):
-                    pixel = image.getpixel((w, h))
-                    if pixel == 1:
-                        encrypted_message.append(chr(h))
-                        break
-            return ''.join(encrypted_message)
-    except FileNotFoundError:
-        print(f"File not found: {image_name}")
-        return ""  # Ensures that the function always returns a value
+    with Image.open(image_name) as image:
+        encrypted_message = []
+        width, height = image.size
+        for w in range(width):
+            for h in range(height):
+                pixel = image.getpixel((w, h))
+                if pixel == 1:
+                    encrypted_message.append(chr(h))
+                    break
+        return ''.join(encrypted_message)
 
 
 if __name__ == "__main__":
-    print(remember_remember("code.png"))
+     try:
+        print(remember_remember("code.png"))
+    except FileNotFoundError:
+        print("Error: The specified file was not found.")
+    except UnidentifiedImageError:
+        print("Error: The specified file is not a valid image.")
