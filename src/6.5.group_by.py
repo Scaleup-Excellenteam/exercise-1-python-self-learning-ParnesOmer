@@ -15,25 +15,19 @@ def group_by(f, iterator):
     dict: A dictionary where the keys are the results of the function f and the values are lists
           of elements from the iterator that correspond to each key.
     """
-    try:
-        my_dict = {}
-        for i in iterator:
-            value = f(i)
-            if value in my_dict:
-                my_dict[value].append(i)
-            else:
-                my_dict[value] = [i]
-        return my_dict
-    except ValueError as e:
-        print(f"Error: {e}")
-        return {}
-    except TypeError as e:
-        print(f"Error: {e}")
-        return {}
-    # the tests don't allow me to write:
-    # except Exception as e:
-    #     print(f"Unexpected error: {e}")
-    #     return {}
+    my_dict = {}
+    for i in iterator:
+        value = f(i)
+        if value in my_dict:
+            my_dict[value].append(i)
+        else:
+            my_dict[value] = [i]
+    return my_dict
+
 
 if __name__ == "__main__":
-    print(group_by(len, ["hi", "bye", "yo", "try"]))
+    try:
+        print(group_by(len, ["hi", "bye", "yo", "try"]))
+    except (ValueError, TypeError) as e:
+        print(f"Error: {e}")
+        
