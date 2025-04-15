@@ -15,19 +15,13 @@ def cup_of_join(*lists, sep=None):
       Returns:
       list: A single list containing all elements from input lists, separated by `sep`.
       """
-    if not lists:
-        return None  # If no lists are provided, return None
-
     result = []
     for i, lst in enumerate(lists):
         if i > 0 and sep is not None:
             result.append(sep)  # Add separator between lists
         result.extend(lst)  # Add elements of the current list
 
-    if sep:
-        result.append(sep)  # Add separator between lists
     return result
-
 
 if __name__ == "__main__":
     # Test cases
