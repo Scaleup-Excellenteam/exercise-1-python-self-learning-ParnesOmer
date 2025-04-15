@@ -44,7 +44,6 @@ if __name__ == "__main__":
     date1 = input("Enter the first date (YYYY-MM-DD): ")
     date2 = input("Enter the second date (YYYY-MM-DD): ")
     random_date, is_monday = no_vinnigrete(date1, date2)
-    print(f"The random date is: {random_date}")
     # Check if the date falls on a Monday
     if is_monday:
         print("Ain't gettin' no vinaigrette today :(")
