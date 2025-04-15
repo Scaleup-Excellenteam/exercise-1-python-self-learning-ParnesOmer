@@ -22,8 +22,8 @@ def cup_of_join(*lists, sep=None):
             result.extend(separator)  # Add separator between lists
         result.extend(lst)  # Add elements of the current list
 
-    # Handle case where the last separator should be added for trailing empty lists
-    if len(lists) > 0 and any(len(lst) == 0 for lst in lists[-1:]):
+    # Add separator at the end if there's only one list
+    if separator is not None:
         result.extend(separator)
     return result
 
