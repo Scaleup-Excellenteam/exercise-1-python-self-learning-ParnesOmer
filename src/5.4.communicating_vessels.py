@@ -8,6 +8,7 @@ Provides two functions:
 Both functions take one or more iterable objects and yield/return their elements interleaved.
 """
 
+from itertools import zip_longest
 
 def generator_interleave(*iterables):
     """
@@ -19,19 +20,11 @@ def generator_interleave(*iterables):
        Yields:
        The next interleaved element from the input iterables.
        """
-    # Convert each iterable to an iterator
-    iterators = [iter(it) for it in iterables]
-
-    # Continue until there are no more iterators
-    while iterators:
-        # Iterate over each iterator
-        for it in iterators:
-            try:
-                # Yield the next item from the iterator
-                yield next(it)
-            except StopIteration:
-                # If the iterator is exhausted, remove it from the list
-                iterators.remove(it)
+    # Use zip_longest to interleave elements from all iterables
+    for elements in zip_longest(*iterables, fillvalue=None):
+        for element in elements:
+            if element is not None:
+                yield element
 
 
 def interleave(*iterables):
@@ -44,20 +37,9 @@ def interleave(*iterables):
        Yields:
        The next interleaved element from the input iterables.
        """
-    # Convert each iterable to an iterator
-    iterators = [iter(it) for it in iterables]
-    final_list = []
-    # Continue until there are no more iterators
-    while iterators:
-        # Iterate over each iterator
-        for it in iterators:
-            try:
-                # Yield the next item from the iterator
-                final_list.append(next(it))
-            except StopIteration:
-                # If the iterator is exhausted, remove it from the list
-                iterators.remove(it)
-    return final_list
+    # Use list comprehension with zip_longest to generate the interleaved list
+    return [element for elements in zip_longest(*iterables, fillvalue=None) for element in elements if element is not None]
+
 
 
 if __name__ == '__main__':
