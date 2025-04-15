@@ -19,12 +19,12 @@ def running_2000(f, *parameters, **keywords):
     Returns:
     float: The execution time in seconds.
     """
-    t_start = time.time()
+    t_start = time.perf_counter()  # Use high-precision timer
     try:
         f(*parameters, **keywords)
     except (TypeError, ValueError) as e:
         print(f"Error: {e}")
-    t_end = time.time()
+    t_end = time.perf_counter()  # Use high-precision timer
     return t_end - t_start
 
 
