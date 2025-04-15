@@ -6,6 +6,8 @@ if the selected date falls on a Monday.
 import random
 import datetime
 
+# Define a constant for Monday
+MONDAY = 0
 def no_vinnigrete(start_date, end_date):
     """
     Generates a random date between start_date and end_date.
@@ -34,7 +36,7 @@ def no_vinnigrete(start_date, end_date):
     random_timestamp = random.randint(0, difference)
     result = start_date + datetime.timedelta(days=random_timestamp)
     # Check if the date falls on a Monday
-    if result.weekday() == 0:
+    if result.weekday() == MONDAY:
         print("Ain't gettin' no vinaigrette today :(")
 
 if __name__ == "__main__":
